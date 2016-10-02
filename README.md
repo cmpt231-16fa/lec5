@@ -1,9 +1,9 @@
-# reveal-skel
-## A Template for Presentations in Reveal.js
+# Lecture 5: [CMPT231](https://cmpt231-16fa.github.io/)
+## Linked Lists and Binary Search Trees
 
-[![Travis-CI build status](https://travis-ci.org/sermons/reveal-skel.svg)](https://travis-ci.org/sermons/reveal-skel)
-[![Node dependencies](https://david-dm.org/sermons/reveal-skel.svg)](https://david-dm.org/sermons/reveal-skel)
-[![Node dev status](https://david-dm.org/sermons/reveal-skel/dev-status.svg)](https://david-dm.org/sermons/reveal-skel#info=devDependencies)
+[![Travis-CI build status](https://travis-ci.org/cmpt231-16fa/lec5.svg)](https://travis-ci.org/cmpt231-16fa/lec5)
+[![Node dependencies](https://david-dm.org/cmpt231-16fa/lec5.svg)](https://david-dm.org/cmpt231-16fa/lec5)
+[![Node dev status](https://david-dm.org/cmpt231-16fa/lec5/dev-status.svg)](https://david-dm.org/cmpt231-16fa/lec5#info=devDependencies)
 
 Template presentation: [reveal-skel](https://github.com/sermons/reveal-skel)
 
