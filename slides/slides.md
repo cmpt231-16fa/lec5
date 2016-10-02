@@ -193,6 +193,140 @@ class LinkedList:
 
 ---
 ## Stacks and queues
++ **Stack** ("LIFO"): last-in-first-out *(memo spike)*
++ **Queue** ("FIFO"): first-in-first-out *(pipeline)*
++ **Interface** (defining set of operations):
+  + `length()`, `isempty()`: number of items
+  + `push(item)`: add item to stack/queue
+  + `peek()`: get item without deleting
+  + `pop()`: peek and delete item
++ **Underflow**: peek/pop on an **empty** stack/queue
++ **Overflow**: push on a **full** stack/queue
+
+---
+## Implementing stacks/queues
++ Abstract data type (ADT): only specifies **interface**
++ Can be **implemented** using arrays, linked-lists, or other
+  + Memory usage, computational efficiency **trade-offs**
+
+```
+class Stack:
+  def __init__( self ):
+    self.head = None
+  def push( self, key ):            # overflow not a worry
+    self.head = Node( key, self.head )
+  def pop( self ):                  # watch for underflow!
+    item = self.head
+    key = item.key
+    self.head = self.head.next
+    del item
+    return key
+```
+
+---
+## Outline
+
+---
+## Implementing trees
++ For **Binary** trees, use *3* pointers:
+  + **Parent**, **left** child, **right** child
++ For **d-way** trees (unknown **degree** *d*):
+  + **Parent**, **first** child, **next** sibling
+
+>>>
+TODO: figures from textbook
+
+---
+## Special trees for fast search
++ Impose additional **constraints** on the tree
++ Optimise for fast **search** and insert/delete:
+  + Run in &Theta;(height of tree): if **full**, this is *&Theta;(lg n)*
++ Can be used to implement a **dictionary** or **priority queue**
++ Various **types**:
+  + **Binary search** tree (BST) *(ch12)*,
+  + **Red-black** tree *(ch13)*
+  + **B-tree** *(ch18)*
+  + and many others!
+
+---
+## Binary search trees (BST)
++ **BST property**: at any node *x* in the tree,
+  + *y* &le; *x* &forall; nodes *y* in *x*'s **left** sub-tree
+  + *y* &ge; *x* &forall; nodes *y* in *x*'s **right** sub-tree
+
+>>>
+TODO: diagram, 5-3, 5-8, 3-2, 3-4, 4-5
+
+---
+## Tree traversals
++ Walk through tree, **printing** out each node
++ **Preorder**: print **self** before children
+  + Sample output: `5 3 2 4 5 8`
+
+```
+def preorder( node ):
+  print node.key
+  preorder( node.left )
+  preorder( node.right )
+```
+
++ **Postorder**: print both **children** before self
+  + Output?  Pseudocode?
++ **Inorder**: print **left** child, then **self**, then **right**
+  + Output?  Pseudocode?
++ Which is useful on a tree with the **BST** property?
+
+>>>
+TODO: diagram, same as previous slide
+
+---
+## Expression trees
++ Trees are used for parsing and evaluating **expressions**:
+  + e.g., tree for `( 2 * (-4) ) + 9`
+  + Which **traversal** produces this expression?
+  + **Try it**: draw tree for `2 * (-4 + 9)`
++ Reverse Polish Notation (**RPN**):
+  + e.g., `2, 4, -, *, 9, +`
+  + Which **traversal** produces RPN?
++ Can implement an RPN **calculator** using a **stack**
+  + **Try it** on the above expression
+
+---
+## Outline
+
+---
+## Searching a BST
++ Compare with node's **key** to see which **subtree** to recurse
++ **Complexity**: O(height of tree) (if **full**, *O(lg n)*)
+  + **Worst-case**: tree degenerates to **linked-list**!
+  + Want to keep tree **balanced**
+
+```
+def search( node, key ):
+  if (node == None) or (node.key == key):
+    return node
+  if key < node.key:
+    return search( node.left, key )
+  else:
+    return search( node.right, key )
+```
+
+---
+## Min/max in BST
++ `min()`: find the **smallest** key:
+  + Keep taking **left** child as far as possible
++ Similarly for `max()`
++ **Iterative** solution faster than **recursive**:
+
+```
+def min( node ):
+  while node.left != None:
+    node = node.left
+  return node.key
+```
+
+---
+## Successor / predecessor
 
 ---
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
