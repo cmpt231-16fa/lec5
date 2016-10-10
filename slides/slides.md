@@ -327,6 +327,49 @@ def min( node ):
 
 ---
 ## Successor / predecessor
++ **Successor** of a node is **next** in line in an **in-order** traversal
+  + **Predecessor**: previous in line
++ If **right** subtree is **not** NULL:
+  + Successor is **min** of right subtree
++ Else, walk **up** tree until a parent link turns **right**:
+
+```
+def successor( node ):
+  if node.right != NULL:
+    return min( node.right )
+  (cur, par) = (node, node.parent)
+  while (par != NULL) and (cur == par.right):
+    (cur, par) = (par, par.parent)
+  return par
+```
+
+---
+## Insert into BST
+**Search** to find where to add node:
+
+```
+def insert( root, key ):
+  cur = root
+  while cur != NULL:
+    if key < cur.key:
+      if cur.left == NULL:
+        cur.left = new Node( key )
+        cur.left.parent = cur
+        return
+      cur = cur.left
+    else:
+      if cur.right == NULL:
+        cur.right = new Node( key )
+        cur.right.parent = cur
+        return
+      cur = cur.right
+```
+
+---
+## Delete from BST
+
+---
+## Delete, continued
 
 ---
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
