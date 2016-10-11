@@ -403,15 +403,17 @@ def insert( root, key ):
 ## Delete node with two children
 
 <div class="imgbox"><div data-markdown>
+
 + If successor *y* is the **right child** of the node to be deleted *z*:
   + Just **promote** it (successor has no left child)
+
 </div><div>
 ![12-4c, direct successor](static/img/Fig-12-4c.svg)
 </div></div>
 
 + Else, replace successor *y* with successor's own right child *x*
   + Replace node to be deleted *z* with successor *y*
-  + Rest of *z*'s old right subtree becomes *y*'s new right subtree
+  + *z*'s old right subtree becomes *y*'s right subtree
 
 <div class="imgbox"><div>
 ![12-4d, descendant successor](static/img/Fig-12-4d.svg)
