@@ -389,8 +389,7 @@ def successor( node ):
 **Search** to find where to add node:
 
 <div class="imgbox"><div style="flex:2">
-<p data-markdown>
-```
+<pre><code>
 def insert( root, key ):
   cur = root
   while cur != NULL:
@@ -406,7 +405,7 @@ def insert( root, key ):
         cur.right.parent = cur
         return
       cur = cur.right
-```
+</code></pre>
 </p>
 </div><div>
 ![big BST](static/img/Fig-12-2.svg)
