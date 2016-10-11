@@ -14,7 +14,8 @@ So that he may bring forth **food** from the earth,
 
 <span class="hl2">16</span>
 The **trees** of the Lord drink their fill, <br/>
-The **cedars** of Lebanon which He planted, <br/>
+The **cedars** of Lebanon which He planted,
+
 <span class="hl2">17</span>
 Where the **birds** build their nests, <br/>
 And the **stork**, whose home is the fir trees.
