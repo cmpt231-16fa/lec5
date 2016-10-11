@@ -337,7 +337,7 @@ def min( node ):
   + Successor is **min** of right subtree
 + Else, walk **up** tree until a parent link turns **right**:
 
-<div class="imgbox"><div data-markdown style="flex:2">
+<div class="imgbox"><div style="flex:2">
 
 ```
 def successor( node ):
