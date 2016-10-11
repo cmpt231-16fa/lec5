@@ -199,10 +199,10 @@ class LinkedList:
 + **Stack** ("LIFO"): last-in-first-out *(memo spike)*
 + **Queue** ("FIFO"): first-in-first-out *(pipeline)*
 + **Interface** (defining set of operations):
-  + `length()`, `isempty()`: number of items
-  + `push(item)`: add item to stack/queue
-  + `peek()`: get item without deleting
-  + `pop()`: peek and delete item
+  + `length()`, `isempty()`: **number** of items
+  + `push(item)`: **add** item to stack/queue
+  + `peek()`: get item **without** deleting
+  + `pop()`: peek and **delete** item
 + **Underflow**: peek/pop on an **empty** stack/queue
 + **Overflow**: push on a **full** stack/queue
 
