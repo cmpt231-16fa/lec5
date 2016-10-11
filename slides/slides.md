@@ -415,9 +415,8 @@ def insert( root, key ):
   + Replace node to be deleted *z* with successor *y*
   + *z*'s old right subtree becomes *y*'s right subtree
 
-<div class="imgbox"><div>
 ![12-4d, descendant successor](static/img/Fig-12-4d.svg)
-</div></div>
+<!-- .element: style="width:75%" -->
 
 ---
 ## Randomly-built BST
