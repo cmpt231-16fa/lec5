@@ -6,7 +6,33 @@
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
-## Devotional
+## Psalm 104:14,16-17 <small>(NASB) (p.1/2)</small>
+<span class="hl2">14</span>
+He causes the **grass** to grow for the cattle, <br/>
+And **vegetation** for the labor of man, <br/>
+So that he may bring forth **food** from the earth,
+
+<span class="hl2">16</span>
+The **trees** of the Lord drink their fill, <br/>
+The **cedars** of Lebanon which He planted, <br/>
+<span class="hl2">17</span>
+Where the **birds** build their nests, <br/>
+And the **stork**, whose home is the fir trees.
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Psalm 104:27-28,30 <small>(NASB) (p.2/2)</small>
+<span class="hl2">27</span>
+They all **wait** for You <br/>
+To give them their **food** in due season.
+
+<span class="hl2">28</span>
+You **give** to them, they **gather** it up; <br/>
+You **open** Your hand, they are **satisfied** with good.
+
+<span class="hl2">30</span>
+You send forth Your **Spirit**, they are **created**; <br/>
+And You **renew** the face of the ground.
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
