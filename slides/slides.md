@@ -333,7 +333,7 @@ class Stack:
 <ul>
 <li> **Touch** each node in tree
 <li> **Preorder**: print **self** before children <ul>
-  <li> Example: `5 3 2 4 5 8`
+  <li> *Example:* `5 3 2 4 5 8`
 </ul></ul>
 <pre><code data-trim>
 def preorder( node ):
@@ -346,9 +346,9 @@ def preorder( node ):
 </div></div>
 
 + **Postorder**: print both **children** before self
-  + Output?  Pseudocode?
+  + *Output?  Pseudocode?*
 + **Inorder**: print **left** child, then **self**, then **right**
-  + Output?  Pseudocode?
+  + *Output?  Pseudocode?*
 + How to **list** elements of a **BST** in sequence?
 
 ---
