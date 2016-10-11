@@ -367,9 +367,35 @@ def insert( root, key ):
 
 ---
 ## Delete from BST
++ Deleting a **leaf** is easy (update links)
++ If node has **one** child, **promote** it in place of node
+  + Bring child's **subtrees** along
++ If **two** children, replace it with its **successor**
+  + In **right** subtree, with **no** left child *(why?)*
+  + Need some **splicing**
 
 ---
-## Delete, continued
+## Delete node with two children
++ If successor *y* is the **right child** of the node to be deleted *z*:
+  + Just **promote** it (successor has no left child)
++ Else, replace successor *y* with successor's own right child *x*
+  + Replace node to be deleted *z* with successor *y*
+  + Rest of *z*'s old right subtree becomes *y*'s new right subtree
+
+>>>
+TODO: fig
+
+---
+## Randomly-built BST
++ How to **build** a BST from a set of *n* distinct keys?
++ **Order** of insertion matters!
++ Worst-case, BST becomes a **linked list**
+  + **Search** (and hence insert, delete, etc.) is *&Theta;(n)*
++ Try a (Fisher-Yates) **shuffle** of the keys first
+  + Each of the *n!* **permutations** is equally likely
+  + **Doesn't** mean each **BST** is equally likely *(try it: n=3)*
++ Expected (average) **height** of random BST is *&Theta;(lg n)*
+  + **Proof** in textbook
 
 ---
 <!-- .slide: data-background-image="http://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
