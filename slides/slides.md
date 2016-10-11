@@ -430,7 +430,8 @@ def insert( root, key ):
 ## Delete node with two children
 
 <div class="imgbox"><div style="flex:2">
-If successor *y* is the **right child** of the node to be deleted *z*,
+If successor *y* is the **right child** <br/>
+of the node to be deleted *z*, <br/>
 just **promote** it (*y* has no left child)
 </div><div>
 ![12-4c, direct successor](static/img/Fig-12-4c.svg)
@@ -467,7 +468,7 @@ just **promote** it (*y* has no left child)
   from the level **below** it, chosen **randomly**
 + **First** node is special (-&infin;), included in **every** level
 + **Search**/**insert**: work from top level downward
-  + **Step** through each node until key is **larger** than target key
+  + **Step** through each node until key is **larger** than target
   + **Back** up one and step **down** a level, then **repeat**
 
 ![Skip list (Wikipedia)](static/img/skip_list.svg)
