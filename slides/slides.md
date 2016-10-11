@@ -343,7 +343,7 @@ def preorder( node ):
   + Output?  Pseudocode?
 + **Inorder**: print **left** child, then **self**, then **right**
   + Output?  Pseudocode?
-+ Which is useful on a tree with the **BST** property?
++ How to **list** elements of a **BST** in sequence?
 
 ---
 ## Expression trees
