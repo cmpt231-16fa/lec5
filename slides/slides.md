@@ -265,8 +265,10 @@ class LinkedList:
 class Stack:
   def __init__( self ):
     self.head = None
+
   def push( self, key ):            # overflow not a worry
     self.head = Node( key, self.head )
+
   def pop( self ):                  # watch for underflow!
     item = self.head
     key = item.key
