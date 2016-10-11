@@ -433,4 +433,17 @@ just **promote** it (*y* has no left child)
 ## Outline
 
 ---
+## Skip lists
++ Apply **BST**-style searching to **linked list**-style structure
++ Lowest level is a standard **linked list**
++ Each **higher** level only includes *p=1/2* of the nodes
+  from the level **below** it, chosen **randomly**
++ **First** node is special (-&infin;), included in **every** level
++ **Search**/**insert**: work from top level downward
+  + **Step** through each node until key is **larger** than target key
+  + **Back** up one and step **down** a level, then **repeat**
+
+![Skip list (Wikipedia)](static/img/skip_list.svg)
+
+---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" class="empty" -->
