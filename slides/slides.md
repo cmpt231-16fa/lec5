@@ -56,7 +56,7 @@ Pointer **arithmetic** can be dangerous!
 ---
 ## Pointer-less languages
 + To prevent **segfaults**, most languages (besides C/C++)
-  do **not** have explicit pointers
+  <br/> do **not** have explicit pointers
 + Instead, you create **references** ("aliases")
   + Variables are simply entries in a **namespace**
   + Map an **identifier** to a **location** in the heap
@@ -103,6 +103,10 @@ class Node:
     self.prev = prev
     self.next = next
 ```
+
+<div class="imgbox"><div>
+![doubly-linked list](static/img/Fig-10-3a.svg)
+</div></div>
 
 ---
 ## Node vs LinkedList
