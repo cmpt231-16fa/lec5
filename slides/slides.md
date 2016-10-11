@@ -331,9 +331,9 @@ class Stack:
 
 <div class="imgbox"><div style="flex:2">
 <ul>
-<li> Walk through tree, **printing** out each node
+<li> **Touch** each node in tree
 <li> **Preorder**: print **self** before children <ul>
-  <li> Sample output (prev slide): `5 3 2 4 5 8`
+  <li> Example: `5 3 2 4 5 8`
 </ul></ul>
 <pre><code data-trim>
 def preorder( node ):
