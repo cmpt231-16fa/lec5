@@ -110,7 +110,7 @@ class Node:
 
 ---
 ## Node vs LinkedList
-+ Create a separate **datatype** for the overall **list**
++ Create a wrapper **datatype** for the overall **list**
 + Keep both **head** and **tail** pointers
   + So we can **jump** directly to either end of the list
 
