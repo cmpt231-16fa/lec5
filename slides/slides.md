@@ -301,7 +301,7 @@ def preorder( node ):
 ---
 ## Searching a BST
 + Compare with node's **key** to see which **subtree** to recurse
-+ **Complexity**: O(height of tree) (if **full**, *O(lg n)*)
++ **Complexity**: O(height of tree): if **full**, this is *O(lg n)*
   + **Worst-case**: tree degenerates to **linked-list**!
   + Want to keep tree **balanced**
 
@@ -337,7 +337,7 @@ def min( node ):
   + Successor is **min** of right subtree
 + Else, walk **up** tree until a parent link turns **right**:
 
-<div class="imgbox"><div data-markdown>
+<div class="imgbox"><div data-markdown style="flex:2">
 
 ```
 def successor( node ):
@@ -355,11 +355,13 @@ def successor( node ):
 
 **Try it**: succ( *7* ), pred( *6* ), succ( *13* )
 
+>>>
+
 ---
 ## Insert into BST
 **Search** to find where to add node:
 
-<div class="imgbox"><div data-markdown>
+<div class="imgbox"><div data-markdown style="flex:2">
 
 ```
 def insert( root, key ):
@@ -394,9 +396,8 @@ def insert( root, key ):
   + In **right** subtree, with **no** left child *(why?)*
   + Need some **splicing**
 
-<div class="imgbox"><div>
 ![12-4b, one child](static/img/Fig-12-4b.svg)
-</div></div>
+<!-- .element: style="width:80%" -->
 
 ---
 ## Delete node with two children
