@@ -387,8 +387,8 @@ def successor( node ):
 ## Insert into BST
 **Search** to find where to add node:
 
-<div class="imgbox"><div data-markdown style="flex:2">
-
+<div class="imgbox"><div style="flex:2">
+<p data-markdown>
 ```
 def insert( root, key ):
   cur = root
@@ -406,7 +406,7 @@ def insert( root, key ):
         return
       cur = cur.right
 ```
-
+</p>
 </div><div>
 ![big BST](static/img/Fig-12-2.svg)
 </div></div>
