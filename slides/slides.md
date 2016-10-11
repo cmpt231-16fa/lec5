@@ -38,12 +38,12 @@
 ## Using pointers
 + **Declare** a var of type "*pointer to int*" (or other type)
 + Get **address** of a var by using "*address-of*" operator
-+ Read **memory location** pointed to by using "*dereference*" operator
++ Read from **memory location** with "*dereference*" operator
 
 ```
 int myAge = 20;
 int* myAgePtr = &myAge;     // get address of myAge
-cout << *myAgePtr;          // prints "20"
+cout << *myAgePtr;          // dereference: prints "20"
 ```
 
 Pointer **arithmetic** can be dangerous!
