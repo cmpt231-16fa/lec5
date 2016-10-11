@@ -468,7 +468,7 @@ just **promote** it (*y* has no left child)
 + **First** node is special (-&infin;), included in **every** level
 + **Search**/**insert**: work from top level downward
   + **Step** through each node until key is **larger** than target
-  + **Back** up one and step **down** a level, then **repeat**
+  + **Back** up one node and step **down** a level, then **repeat**
 
 ![Skip list (Wikipedia)](static/img/skip_list.svg)
 
