@@ -38,16 +38,16 @@ And You **renew** the face of the ground.
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
 ## Outline for today
-+ Dynamic data structures: review of **pointers**
-+ **Linked lists**
-  + Variants: **doubly**-linked, **circular**
++ Review of **pointers**
++ **Linked lists**: singly/**doubly**-linked, **circular**
 + **Stacks** and **queues**
-+ **Trees**
-  + Binary search trees (**BST**)
-  + Tree **traversal**
++ **Trees** and Binary search trees (**BST**)
+  + BST **traversals**
   + **Searching**
   + **Min**/max and **successor**/predecessor
   + **Insert** and **delete**
+  + **Randomised** BST
++ **Skip lists**
 
 ---
 ## Stack frame vs heap
