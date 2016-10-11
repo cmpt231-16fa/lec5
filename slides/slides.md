@@ -430,7 +430,7 @@ def insert( root, key ):
 
 <div class="imgbox"><div style="flex:2">
 If successor *y* is the **right child** <br/>
-of the node to be deleted *z*, <br/>
+of the node *z* to be deleted, <br/>
 just **promote** it (*y* has no left child)
 </div><div>
 ![12-4c, direct successor](static/img/Fig-12-4c.svg)
