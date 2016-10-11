@@ -365,8 +365,7 @@ def min( node ):
 + Else, walk **up** tree until a parent link turns **right**:
 
 <div class="imgbox"><div style="flex:2">
-
-```
+<pre><code data-trim>
 def successor( node ):
   if node.right != NULL:
     return min( node.right )
@@ -374,12 +373,10 @@ def successor( node ):
   while (par != NULL) and (cur == par.right):
     (cur, par) = (par, par.parent)
   return par
-```
-
+</code></pre>
 </div><div>
 ![big BST](static/img/Fig-12-2.svg)
 </div></div>
-
 **Try it**: succ( *7* ), pred( *6* ), succ( *13* )
 
 >>>
@@ -387,9 +384,8 @@ def successor( node ):
 ---
 ## Insert into BST
 **Search** to find where to add node:
-
 <div class="imgbox"><div style="flex:2">
-<pre><code>
+<pre><code data-trim>
 def insert( root, key ):
   cur = root
   while cur != NULL:
@@ -406,11 +402,9 @@ def insert( root, key ):
         return
       cur = cur.right
 </code></pre>
-</p>
 </div><div>
 ![big BST](static/img/Fig-12-2.svg)
 </div></div>
-
 **Try it**: insert( *5* )
 
 ---
