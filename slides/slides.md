@@ -390,11 +390,11 @@ def insert( root, key ):
 ---
 ## Delete from BST
 + Deleting a **leaf** is easy (update links)
-+ If node has **one** child, **promote** it in place of node
++ If node *z* has **one** child *l*, **promote** it in place of *z*
   + Bring child's **subtrees** along
 + If **two** children, replace it with its **successor**
-  + In **right** subtree, with **no** left child *(why?)*
-  + Need some **splicing**
+  + We know successor is in **right** subtree, <br/>
+    and has **no** left child *(why?)*
 
 ![12-4b, one child](static/img/Fig-12-4b.svg)
 <!-- .element: style="width:60%" -->
@@ -402,11 +402,9 @@ def insert( root, key ):
 ---
 ## Delete node with two children
 
-<div class="imgbox"><div data-markdown>
-
-+ If successor *y* is the **right child** of the node to be deleted *z*:
-  + Just **promote** it (successor has no left child)
-
+<div class="imgbox"><div style="flex:2">
+If successor *y* is the **right child** of the node to be deleted *z*,
+just **promote** it (*y* has no left child)
 </div><div>
 ![12-4c, direct successor](static/img/Fig-12-4c.svg)
 </div></div>
