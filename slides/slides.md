@@ -328,16 +328,22 @@ class Stack:
 
 ---
 ## Tree traversals
-+ Walk through tree, **printing** out each node
-+ **Preorder**: print **self** before children
-  + Sample output (prev slide): `5 3 2 4 5 8`
 
-```
+<div class="imgbox"><div style="flex:2">
+<ul>
+<li> Walk through tree, **printing** out each node
+<li> **Preorder**: print **self** before children <ul>
+  <li> Sample output (prev slide): `5 3 2 4 5 8`
+</ul></ul>
+<pre><code data-trim>
 def preorder( node ):
   print node.key
   preorder( node.left )
   preorder( node.right )
-```
+</code></pre>
+</div><div>
+![BST with 6 nodes](static/img/bst-538.svg)
+</div></div>
 
 + **Postorder**: print both **children** before self
   + Output?  Pseudocode?
