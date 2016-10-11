@@ -170,7 +170,7 @@ What **result** does this code produce?
 + When **traversing** list, ensure not to **circle** forever!
   + e.g., store **length** of list, <br/>
     and **track** how many nodes we've traversed
-  + or, append a **sentinel** node with special key
+  + or, add a **sentinel** node with special key
 + Circularly-linked lists can also be **doubly**-linked
   + **Both** *.prev* and *.next* pointers wrap around
 
