@@ -98,7 +98,18 @@ ages                        # [ 3, 5, 11, 9 ]
 ```
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ **Linked lists: singly/doubly-linked, circular**
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ Skip lists
 
 ---
 ## Linked lists
@@ -219,7 +230,18 @@ class LinkedList:
 ```
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ **Stacks and queues**
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ Skip lists
 
 ---
 ## Stacks and queues
@@ -254,7 +276,18 @@ class Stack:
 ```
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ **Trees and Binary search trees (BST)**
+  + **BST traversals**
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ Skip lists
 
 ---
 ## Implementing trees
@@ -323,7 +356,18 @@ def preorder( node ):
   + **Try it** on the above expression
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + **Searching**
+  + **Min/max and successor/predecessor**
+  + **Insert and delete**
+  + **Randomised BST**
++ Skip lists
 
 ---
 ## Searching a BST
@@ -451,7 +495,17 @@ just **promote** it (*y* has no left child)
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
-## Outline
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ **Skip lists**
 
 ---
 ## Skip lists
@@ -465,6 +519,20 @@ just **promote** it (*y* has no left child)
   + **Back** up one node and step **down** a level, then **repeat**
 
 ![Skip list (Wikipedia)](static/img/skip_list.svg)
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of **pointers**
++ **Linked lists**: singly/**doubly**-linked, **circular**
++ **Stacks** and **queues**
++ **Trees** and Binary search trees (**BST**)
+  + BST **traversals**
+  + **Searching**
+  + **Min**/max and **successor**/predecessor
+  + **Insert** and **delete**
+  + **Randomised** BST
++ **Skip lists**
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" class="empty" -->
