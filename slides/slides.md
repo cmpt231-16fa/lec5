@@ -397,7 +397,7 @@ def insert( root, key ):
   + Need some **splicing**
 
 ![12-4b, one child](static/img/Fig-12-4b.svg)
-<!-- .element: style="width:80%" -->
+<!-- .element: style="width:60%" -->
 
 ---
 ## Delete node with two children
