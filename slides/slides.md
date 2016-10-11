@@ -365,8 +365,8 @@ def preorder( node ):
   + BST traversals
   + **Searching**
   + **Min/max and successor/predecessor**
-  + **Insert and delete**
-  + **Randomised BST**
+  + Insert and delete
+  + Randomised BST
 + Skip lists
 
 ---
@@ -423,7 +423,19 @@ def successor( node ):
 </div></div>
 **Try it**: succ( *7* ), pred( *6* ), succ( *13* )
 
->>>
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + **Insert and delete**
+  + **Randomised BST**
++ Skip lists
 
 ---
 ## Insert into BST
