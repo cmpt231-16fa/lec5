@@ -91,9 +91,6 @@ head = Node( 5, head )
 head = Node( 3, head )
 ```
 
->>>
-TODO: diagram of list
-
 ---
 ## Doubly-linked lists
 + Track **both** *.prev* and *.next* pointers in each node
@@ -134,8 +131,9 @@ What **result** does this code produce?
 + Circularly-linked lists can also be **doubly**-linked
   + **Both** *.prev* and *.next* pointers wrap around
 
->>>
-TODO: diagram
+<div class="imgbox"><div>
+![Circular doubly-linked list](static/img/Fig-10-4b.svg)
+</div></div>
 
 ---
 ## Insert into linked list
@@ -233,8 +231,11 @@ class Stack:
 + For **d-way** trees (unknown **degree** *d*):
   + **Parent**, **first** child, **next** sibling
 
->>>
-TODO: figures from textbook
+<div class="imgbox"><div>
+![binary tree](static/img/Fig-10-9.svg)
+</div><div>
+![d-way tree](static/img/Fig-10-10.svg)
+</div></div>
 
 ---
 ## Special trees for fast search
@@ -254,14 +255,17 @@ TODO: figures from textbook
   + *y* &le; *x* &forall; nodes *y* in *x*'s **left** sub-tree
   + *y* &ge; *x* &forall; nodes *y* in *x*'s **right** sub-tree
 
->>>
-TODO: diagram, 5-3, 5-8, 3-2, 3-4, 4-5
+<div class="imgbox"><div>
+![BST with 6 nodes](static/img/bst-538.svg)
+</div></div>
 
 ---
 ## Tree traversals
 + Walk through tree, **printing** out each node
 + **Preorder**: print **self** before children
   + Sample output: `5 3 2 4 5 8`
+
+<div class="imgbox"><div data-markdown>
 
 ```
 def preorder( node ):
@@ -270,14 +274,15 @@ def preorder( node ):
   preorder( node.right )
 ```
 
+</div><div>
+![BST with 6 nodes](static/img/bst-538.svg)
+</div></div>
+
 + **Postorder**: print both **children** before self
   + Output?  Pseudocode?
 + **Inorder**: print **left** child, then **self**, then **right**
   + Output?  Pseudocode?
 + Which is useful on a tree with the **BST** property?
-
->>>
-TODO: diagram, same as previous slide
 
 ---
 ## Expression trees
@@ -333,6 +338,8 @@ def min( node ):
   + Successor is **min** of right subtree
 + Else, walk **up** tree until a parent link turns **right**:
 
+<div class="imgbox"><div data-markdown>
+
 ```
 def successor( node ):
   if node.right != NULL:
@@ -343,27 +350,41 @@ def successor( node ):
   return par
 ```
 
+</div><div>
+![big BST](static/img/Fig-12-2.svg)
+</div></div>
+
+**Try it**: succ( *7* ), pred( *6* ), succ( *13* )
+
 ---
 ## Insert into BST
 **Search** to find where to add node:
+
+<div class="imgbox"><div data-markdown>
 
 ```
 def insert( root, key ):
   cur = root
   while cur != NULL:
-    if key < cur.key:
+    if key < cur.key:           # go left
       if cur.left == NULL:
         cur.left = new Node( key )
         cur.left.parent = cur
         return
       cur = cur.left
-    else:
+    else:                       # go right
       if cur.right == NULL:
         cur.right = new Node( key )
         cur.right.parent = cur
         return
       cur = cur.right
 ```
+
+</div><div>
+![big BST](static/img/Fig-12-2.svg)
+</div></div>
+
+**Try it**: insert( *5* )
 
 ---
 ## Delete from BST
@@ -374,16 +395,27 @@ def insert( root, key ):
   + In **right** subtree, with **no** left child *(why?)*
   + Need some **splicing**
 
+<div class="imgbox"><div>
+![12-4b, one child](static/img/Fig-12-4b.svg)
+</div></div>
+
 ---
 ## Delete node with two children
+
+<div class="imgbox"><div data-markdown>
 + If successor *y* is the **right child** of the node to be deleted *z*:
   + Just **promote** it (successor has no left child)
+</div><div>
+![12-4c, direct successor](static/img/Fig-12-4c.svg)
+</div></div>
+
 + Else, replace successor *y* with successor's own right child *x*
   + Replace node to be deleted *z* with successor *y*
   + Rest of *z*'s old right subtree becomes *y*'s new right subtree
 
->>>
-TODO: fig
+<div class="imgbox"><div>
+![12-4d, descendant successor](static/img/Fig-12-4d.svg)
+</div></div>
 
 ---
 ## Randomly-built BST
