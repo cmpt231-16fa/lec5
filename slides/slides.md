@@ -268,9 +268,7 @@ class Stack:
 ## Tree traversals
 + Walk through tree, **printing** out each node
 + **Preorder**: print **self** before children
-  + Sample output: `5 3 2 4 5 8`
-
-<div class="imgbox"><div data-markdown>
+  + Sample output (prev slide): `5 3 2 4 5 8`
 
 ```
 def preorder( node ):
@@ -278,10 +276,6 @@ def preorder( node ):
   preorder( node.left )
   preorder( node.right )
 ```
-
-</div><div>
-![BST with 6 nodes](static/img/bst-538.svg)
-</div></div>
 
 + **Postorder**: print both **children** before self
   + Output?  Pseudocode?
