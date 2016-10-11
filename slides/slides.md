@@ -523,14 +523,14 @@ just **promote** it (*y* has no left child)
 
 ---
 ## Skip lists
-+ Apply **BST**-style searching to **linked list**-style structure
-+ Lowest level is a standard **linked list**
-+ Each **higher** level only includes *p=1/2* of the nodes
++ **BST**-style searching applied to a **linked list** structure
+  + Add **extra** links to nodes in linked list
++ Each **level** only links *p=1/2* of the nodes
   from the level **below** it, chosen **randomly**
-+ **First** node is special (-&infin;), included in **every** level
-+ **Search**/**insert**: work from top level downward
-  + **Step** through each node until key is **larger** than target
-  + **Back** up one node and step **down** a level, then **repeat**
++ **First** node is special (-&infin;), linked in **every** level
++ **Search** / insert / delete: work from top level downward
+  + **Step** through list until key is **larger** than target
+  + Go to **previous** node and step **down** a level, then **repeat**
 
 ![Skip list (Wikipedia)](static/img/skip_list.svg)
 
