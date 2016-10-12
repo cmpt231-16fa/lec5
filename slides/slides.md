@@ -224,7 +224,7 @@ class LinkedList:
 class LinkedList:
   def delete( self, key ):
     node = self.search( key )
-    node.prev.next = node.next
+    node.prev.next = node.next      # what if deleting head/tail?
     node.next.prev = node.prev
     del node
 ```
