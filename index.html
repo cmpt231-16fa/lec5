@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lecture 5: CMPT231</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <link rel=icon href="static/img/favicon.svg" sizes="any" type="image/svg+xml" />
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css" integrity="sha256-OxiHrn+gXudPDHxTvXiQzeFjZU/FllSSPmOOYAZ1O/g=" crossorigin="anonymous" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css" integrity="sha256-GA29iW/iYj9FcuQQktvW45pRzHvZeFfgeFvA4tGVjpM=" crossorigin="anonymous" />
+    
+
+    <link rel="stylesheet" href="static/css/boldblack.css" id="theme" />
+    <link rel="stylesheet" href="static/css/slides.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+
+      <noscript><div class="noscript">
+        <h1>Lecture 5: CMPT231</h1>
+        <p>(Please see PDF link below)</p>
+      </div></noscript>
+
+      <div class="slides">
+        
+        <section data-markdown data-charset="utf8"
+          data-separator="^---[-\s]*$"
+          data-separator-vertical="^\*\*\*[\*\s]*$"
+          data-separator-notes="^>>>[>\s]*$">
+          <textarea data-template>
+        <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+# CMPT231
+## Lecture 5: ch10, 12
+### Dynamic Data Structures:
+### Linked Lists and Binary Search Trees
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Psalm 104:14,16-17 <small>(NASB) (p.1/2)</small>
+<span class="hl2">14</span>
+He causes the **grass** to grow for the cattle, <br/>
+And **vegetation** for the labor of man, <br/>
+So that he may bring forth **food** from the earth,
+
+<span class="hl2">16</span>
+The **trees** of the Lord drink their fill, <br/>
+The **cedars** of Lebanon which He planted,
+
+<span class="hl2">17</span>
+Where the **birds** build their nests, <br/>
+And the **stork**, whose home is the fir trees.
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Psalm 104:27-28,30 <small>(NASB) (p.2/2)</small>
+<span class="hl2">27</span>
+They all **wait** for You <br/>
+To give them their **food** in due season.
+
+<span class="hl2">28</span>
+You **give** to them, they **gather** it up; <br/>
+You **open** Your hand, they are **satisfied** with good.
+
+<span class="hl2">30</span>
+You send forth Your **Spirit**, they are **created**; <br/>
+And You **renew** the face of the ground.
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of **pointers**
++ **Linked lists**: singly/**doubly**-linked, **circular**
++ **Stacks** and **queues**
++ **Trees** and Binary search trees (**BST**)
+  + BST **traversals**
+  + **Searching**
+  + **Min**/max and **successor**/predecessor
+  + **Insert** and **delete**
+  + **Randomised** BST
++ **Skip lists**
+
+---
+## Stack frame vs heap
++ Where are program **variables** stored in memory?
+  + **Static** vars + formal **parameters** &rArr; **stack frame**
+    + Size known at **compile** time
+  + **Local** vars dynamically allocated &rArr; **heap**
+    + Typically **deallocated** when program/function exits
++ A **pointer** is a var whose **value** <br/>
+  is a memory **location** in the heap
+  + Usually has its own **type** (e.g., "*pointer to float*")
+  + But really is just an **unsigned int** itself!
+
+---
+## Using pointers
++ **Declare** a var of type "*pointer to int*" (or other type)
++ Get **address** of a var by using "*address-of*" operator
++ Read from **memory location** with "*dereference*" operator
+
+```
+int myAge = 20;
+int* myAgePtr = &myAge;     // get address of myAge
+cout << *myAgePtr;          // dereference: prints "20"
+```
+
+Pointer **arithmetic** can be dangerous!
+
+```
+*( myAgePtr + 1 );          // segmentation fault!
+*( 1033813 );               // random spot in memory!
+```
+
+---
+## Pointer-less languages
++ To prevent **segfaults**, most languages (besides C/C++)
+  <br/> do **not** have explicit pointers
++ Instead, you create **references** ("aliases")
+  + Variables are simply entries in a **namespace**
+  + Map an **identifier** to a **location** in the heap
+  + **Multiple** identifiers can map to same location
++ Be aware of when a **reference** is made vs a **copy**!
+
+```
+ages = [ 3, 5, 7, 9 ]       # Python list (mutable)
+myAges = ages               # create alias
+myAges[ 2 ] = 11            # overwrite 7
+ages                        # [ 3, 5, 11, 9 ]
+```
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ **Linked lists: singly/doubly-linked, circular**
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ Skip lists
+
+---
+## Linked lists
++ Linear, **array-like** data structure, but:
++ **Dynamic**: can change length (not fixed at compile time)
++ Fast mid-list **insert** / delete (vs **shifting**)
++ But **random** access slower than array
+
+```
+class Node:
+  def __init__( self, key=None, next=None ):
+    ( self.key, self.next ) = ( key, next )
+
+head = Node( 9 )
+head = Node( 7, head )
+head = Node( 5, head )
+head = Node( 3, head )
+```
+
+---
+## Doubly-linked lists
++ Track **both** *.prev* and *.next* pointers in each node
++ Allows us to move forwards and **backwards** through list
+
+```
+class Node:
+  def __init__( self, key=None, prev=None, next=None ):
+    self.key = key
+    self.prev = prev
+    self.next = next
+```
+
+<div class="imgbox"><div>
+![doubly-linked list](static/img/Fig-10-3a.svg)
+</div></div>
+
+---
+## Node vs LinkedList
++ Create a wrapper **datatype** for the overall **list**
++ Keep both **head** and **tail** pointers
+  + So we can **jump** directly to either end of the list
+
+```
+class LinkedList:
+  def __init__( self, head=None, tail=None ):
+    ( self.head, self.tail ) = ( head, tail )
+
+x = LinkedList( Node( 3 ), Node( 5 ) )
+x.head.next = x.tail
+x.tail.prev = x.head
+```
+
+What **result** does this code produce?
+
+---
+## Circularly-linked lists
++ *.next* pointer of **tail** node wraps back to **head**
++ When **traversing** list, ensure not to **circle** forever!
+  + e.g., store **length** of list, <br/>
+    and **track** how many nodes we've traversed
+  + or, add a **sentinel** node with special key
++ Circularly-linked lists can also be **doubly**-linked
+  + **Both** *.prev* and *.next* pointers wrap around
+
+<div class="imgbox"><div>
+![Circular doubly-linked list](static/img/Fig-10-4b.svg)
+</div></div>
+
+---
+## Insert into linked list
++ **Create** new node with the given *key*
+  + and prepend to the **head** of the list
++ Also called **push** since it only inserts at **head**
+
+```
+class LinkedList:
+  def insert( self, key=None ):
+    self.head = Node( key, self.head )
+```
+
+**Try it**: insert *3* into list `[5, 7, 9]`
+
+---
+## Search on linked list
++ Return a **reference** to a node with the given *key*
+  + Or return *None* if key not found in list
+
+```
+class LinkedList:
+  def search( self, key ):
+    cur = self.head
+    while cur != None:
+      if cur.key == key:
+        return cur
+      cur = cur.next
+    return None
+```
+
+**Try it**: search for *7* in list `[3, 5, 7, 9]`
+
+---
+## Delete from linked list
++ **Splice** a referenced node out of the list
+  + If given *key* instead of pointer, just **search** first
++ **Update** *.prev*/*.next* links in neighbouring nodes
+  + So they **skip** over the deleted node
++ **Free** the unused memory so it can be reused
+  + **Garbage**: allocated but unused/unreachable memory
+  + **Memory leak**: heap grows indefinitely
+
+```
+class LinkedList:
+  def delete( self, key ):
+    node = self.search( key )
+    node.prev.next = node.next      # what if deleting head/tail?
+    node.next.prev = node.prev
+    del node
+```
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ **Stacks and queues**
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ Skip lists
+
+---
+## Stacks and queues
++ **Stack** ("LIFO"): last-in-first-out *(memo spike)*
++ **Queue** ("FIFO"): first-in-first-out *(pipeline)*
++ **Interface** (defining set of operations):
+  + `length()`, `isempty()`: **number** of items
+  + `push(item)`: **add** item to stack/queue
+  + `peek()`: get item **without** deleting
+  + `pop()`: peek and **delete** item
++ **Underflow**: peek/pop on an **empty** stack/queue
++ **Overflow**: push on a **full** stack/queue
+
+---
+## Implementing stacks/queues
++ Abstract data type (ADT): only specifies **interface**
++ Can be **implemented** using arrays, linked-lists, or other
+  + Memory usage, computational efficiency **trade-offs**
+
+```
+class Stack:
+  def __init__( self ):
+    self.head = None
+
+  def push( self, key ):            # overflow not a worry
+    self.head = Node( key, self.head )
+
+  def pop( self ):                  # watch for underflow!
+    item = self.head
+    key = item.key
+    self.head = self.head.next
+    del item
+    return key
+```
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ **Trees and Binary search trees (BST)**
+  + **BST traversals**
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ Skip lists
+
+---
+## Implementing trees
++ For **Binary** trees, use *3* pointers:
+  + **Parent**, **left** child, **right** child
++ For **d-way** trees (unknown **degree** *d*):
+  + **Parent**, **first** child, **next** sibling
+
+<div class="imgbox"><div>
+![binary tree](static/img/Fig-10-9.svg)
+</div><div>
+![d-way tree](static/img/Fig-10-10.svg)
+</div></div>
+
+---
+## Special trees for fast search
++ Impose additional **constraints** on the tree
++ Optimise for fast **search** and insert/delete:
+  + Run in &Theta;(height of tree): if **full**, this is *&Theta;(lg n)*
++ Can be used to implement a **dictionary** or **priority queue**
++ Various **types**:
+  + **Binary search** tree (BST) *(ch12)*,
+  + **Red-black** tree *(ch13)*
+  + **B-tree** *(ch18)*
+  + and many others!
+
+---
+## Binary search trees (BST)
++ **BST property**: at any node *x* in the tree,
+  + *y* &le; *x* &forall; nodes *y* in *x*'s **left** sub-tree
+  + *y* &ge; *x* &forall; nodes *y* in *x*'s **right** sub-tree
+
+<div class="imgbox"><div>
+![BST with 6 nodes](static/img/bst-538.svg)
+</div></div>
+
+---
+## Tree traversals
+
+<div class="imgbox"><div style="flex:2">
+<ul>
+<li> **Touch** each node in tree
+<li> **Preorder**: print **self** before children <ul>
+  <li> *Example:* `5 3 2 4 5 8`
+</ul></ul>
+<pre><code data-trim>
+def preorder( node ):
+  print node.key
+  preorder( node.left )
+  preorder( node.right )
+</code></pre>
+</div><div>
+![BST with 6 nodes](static/img/bst-538.svg)
+</div></div>
+
++ **Postorder**: print both **children** before self
+  + *Output?  Pseudocode?*
++ **Inorder**: print **left** child, then **self**, then **right**
+  + *Output?  Pseudocode?*
++ How to **list** elements of a **BST** in sequence?
+
+---
+## Expression trees
++ Trees are used for parsing and evaluating **expressions**:
+  + e.g., tree for `( 2 * (-4) ) + 9`
+  + Which **traversal** produces this expression?
+  + **Try it**: draw tree for `2 * (-4 + 9)`
++ Reverse Polish Notation (**RPN**):
+  + e.g., `2, 4, -, *, 9, +`
+  + Which **traversal** produces RPN?
++ Can implement an RPN **calculator** using a **stack**
+  + **Try it** on the above expression
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + **Searching**
+  + **Min/max and successor/predecessor**
+  + Insert and delete
+  + Randomised BST
++ Skip lists
+
+---
+## Searching a BST
++ Compare with node's **key** to see which **subtree** to recurse
++ **Complexity**: O(height of tree): if **full**, this is *O(lg n)*
+  + **Worst-case**: tree degenerates to **linked-list**!
+  + Want to keep tree **balanced**
+
+```
+def search( node, key ):
+  if (node == None) or (node.key == key):
+    return node
+  if key < node.key:
+    return search( node.left, key )
+  else:
+    return search( node.right, key )
+```
+
+---
+## Min/max in BST
++ `min()`: find the **smallest** key:
+  + Keep taking **left** child as far as possible
++ Similarly for `max()`
++ **Iterative** solution faster than **recursive**:
+
+```
+def min( node ):
+  while node.left != None:
+    node = node.left
+  return node.key
+```
+
+---
+## Successor / predecessor
++ **Successor** of a node is **next** in line in an **in-order** traversal
+  + **Predecessor**: previous in line
++ If **right** subtree is **not** NULL:
+  + Successor is **min** of right subtree
++ Else, walk **up** tree until a parent link turns **right**:
+
+<div class="imgbox"><div style="flex:2">
+<pre><code data-trim>
+def successor( node ):
+  if node.right != NULL:
+    return min( node.right )
+  (cur, par) = (node, node.parent)
+  while (par != NULL) and (cur == par.right):
+    (cur, par) = (par, par.parent)
+  return par
+</code></pre>
+</div><div>
+![big BST](static/img/Fig-12-2.svg)
+</div></div>
+**Try it**: succ( *7* ), pred( *6* ), succ( *13* )
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + **Insert and delete**
+  + **Randomised BST**
++ Skip lists
+
+---
+## Insert into BST
+**Search** to find where to add node:
+<div class="imgbox"><div style="flex:2">
+<pre><code data-trim>
+def insert( root, key ):
+  cur = root
+  while cur != NULL:
+    if key < cur.key:           # go left
+      if cur.left == NULL:
+        cur.left = new Node( key )
+        cur.left.parent = cur
+        return
+      cur = cur.left
+    else:                       # go right
+      if cur.right == NULL:
+        cur.right = new Node( key )
+        cur.right.parent = cur
+        return
+      cur = cur.right
+</code></pre>
+</div><div>
+![big BST](static/img/Fig-12-2.svg)
+</div></div>
+**Try it**: insert( *5* )
+
+---
+## Delete from BST
++ Deleting a **leaf** is easy (update links)
++ If node *z* has **one** child *l*, **promote** it in place of *z*
+  + Bring child's **subtrees** along
++ If **two** children, replace it with its **successor**
+  + We know successor is in **right** subtree, <br/>
+    and has **no** left child *(why?)*
+
+![12-4b, one child](static/img/Fig-12-4b.svg)
+<!-- .element: style="width:60%" -->
+
+---
+## Delete node with two children
+
+<div class="imgbox"><div style="flex:2">
+If successor *y* is the **right child** <br/>
+of the node *z* to be deleted, <br/>
+just **promote** it (*y* has no left child)
+</div><div>
+![12-4c, direct successor](static/img/Fig-12-4c.svg)
+</div></div>
+
++ Else, replace successor *y* with successor's own right child *x*
+  + Replace node to be deleted *z* with successor *y*
+  + *z*'s old right subtree becomes *y*'s right subtree
+
+![12-4d, descendant successor](static/img/Fig-12-4d.svg)
+<!-- .element: style="width:75%" -->
+
+---
+## Randomly-built BST
++ How to **build** a BST from a set of *n* distinct keys?
++ **Order** of insertion matters!
++ Worst-case, BST becomes a **linked list**
+  + **Search** (and hence insert, delete, etc.) is *&Theta;(n)*
++ Try a (Fisher-Yates) **shuffle** of the keys first
+  + Each of the *n!* **permutations** is equally likely
+  + **Doesn't** mean each **BST** is equally likely *(try it: n=3)*
++ Expected (average) **height** of random BST is *&Theta;(lg n)*
+  + **Proof** in textbook
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of pointers
++ Linked lists: singly/doubly-linked, circular
++ Stacks and queues
++ Trees and Binary search trees (BST)
+  + BST traversals
+  + Searching
+  + Min/max and successor/predecessor
+  + Insert and delete
+  + Randomised BST
++ **Skip lists**
+
+---
+## Skip lists
++ **BST**-style searching applied to a **linked list** structure
+  + Add **extra** links to nodes in linked list
++ Each **level** only links *p=1/2* of the nodes
+  from the level **below** it, chosen **randomly**
++ **First** node is special (-&infin;), linked in **every** level
++ **Search** / insert / delete: work from top level downward
+  + **Step** through list until key is **larger** than target
+  + Go to **previous** node and step **down** a level, then **repeat**
+
+![Skip list (Wikipedia)](static/img/skip_list.svg)
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" -->
+## Outline for today
++ Review of **pointers**
++ **Linked lists**: singly/**doubly**-linked, **circular**
++ **Stacks** and **queues**
++ **Trees** and Binary search trees (**BST**)
+  + BST **traversals**
+  + **Searching**
+  + **Min**/max and **successor**/predecessor
+  + **Insert** and **delete**
+  + **Randomised** BST
++ **Skip lists**
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-DiKkJKvDi64-tree_road.jpg" class="empty" -->
+
+          </textarea>
+        </section>
+        
+      </div>
+
+      <div id="footer">cmpt231.seanho.com/lec5
+        <span class="links">
+          <a href="https://github.com/cmpt231-16fa/lec5">
+            <i class="fa fa-github fa-inverse"></i></a>
+          <a href="static/lec5.pdf">
+            <i class="fa fa-file-pdf-o fa-inverse"></i></a>
+        </span>
+        <span class="commit">edbe8db</span>
+      </div>
+
+    </div>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js" integrity="sha256-Dul4c09cdrWKXVtallPxF558lwxMwCC8dXJdZ0PVW54=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js" integrity="sha256-pv4AarTAzSO6lz+bbMPwmV29XMjkzmFOn601b2pWqXE=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/marked.min.js" integrity="sha256-fIsvyYkI1qQV1tu1PdlM4FF43kW76YCnCcl/xJCD3Fc=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/markdown.min.js" integrity="sha256-p6zZf7+dsrD1lcLQCXRgmXAAMyr9pWWCP4a9KfB0klE=" crossorigin="anonymous"></script>
+    
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        SVG: { scale: 77 }
+      });
+    </script>
+
+    <script>
+      Reveal.initialize({
+        display: 'flex',
+        maxScale: 4.0,
+        slideNumber: 'c/t',
+        controlsTutorial: false,
+        viewDistance: 40,
+
+        markdown: {
+          smartypants: true
+        },
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js',
+          config: 'AM_SVG'
+        },
+
+        multiplex: {
+          url: 'https://mp.seanho.com/',
+          id : '604d2ec1ac93ef10',
+          secret: Reveal.getQueryHash().s || null
+        },
+
+        dependencies: [
+          { src: Reveal.getQueryHash().s ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/multiplex/master.min.js' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/multiplex/client.min.js', async:true }
+        ]
+      });
+    </script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/math/math.min.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/highlight/highlight.min.js" crossorigin="anonymous"></script>
+    
+    <script src="static/js/notes.js"></script>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+
+  </body>
+</html>
